@@ -1,35 +1,39 @@
 const userService = require('../service/user.service');
 
+const ONE_MONTH = 30 * 24 * 60 * 60 * 1000;
 class UserController {
-	async register(req, res, next) {
+	async register(req, res) {
 		try {
 			const { email, password } = req.body;
 			const newUser = await userService.register(email, password);
-			res.status(201).json(newUser);
+			res.cookie('refreshToken', newUser.refreshToken, {
+				maxAge: ONE_MONTH,
+				httpOnly: true,
+			});
+			return res.status(201).json(newUser);
 		} catch (error) {
-			console.log(error);
 			res.status(400).json(error.message);
 		}
 	}
 
-	async login(req, res, next) {
+	async login(req, res) {
 		try {
 		} catch (error) {}
 	}
 
-	async logout(req, res, next) {
+	async logout(req, res) {
 		try {
 		} catch (error) {}
 	}
-	async activate(req, res, next) {
+	async activate(req, res) {
 		try {
 		} catch (error) {}
 	}
-	async refresh(req, res, next) {
+	async refresh(req, res) {
 		try {
 		} catch (error) {}
 	}
-	async getUsers(req, res, next) {
+	async getUsers(req, res) {
 		try {
 			res.json(['1', '2']);
 		} catch (error) {}
