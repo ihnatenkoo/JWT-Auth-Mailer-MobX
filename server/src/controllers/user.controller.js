@@ -2,7 +2,7 @@ const UserService = require('../service/user.service');
 
 const ONE_MONTH = 30 * 24 * 60 * 60 * 1000;
 class UserController {
-	async register(req, res) {
+	async register(req, res, next) {
 		try {
 			const { email, password } = req.body;
 			const newUser = await UserService.register(email, password);
@@ -12,36 +12,43 @@ class UserController {
 			});
 			return res.status(201).json(newUser);
 		} catch (error) {
-			res.status(400).json(error.message);
+			next(error);
 		}
 	}
 
-	async login(req, res) {
+	async login(req, res, next) {
 		try {
-		} catch (error) {}
+		} catch (error) {
+			next(error);
+		}
 	}
 
-	async logout(req, res) {
+	async logout(req, res, next) {
 		try {
-		} catch (error) {}
+		} catch (error) {
+			next(error);
+		}
 	}
-	async activate(req, res) {
+	async activate(req, res, next) {
 		try {
 			const activationLink = req.params.link;
 			await UserService.activate(activationLink);
 			return res.redirect(process.env.CLIENT_URL);
 		} catch (error) {
-			console.log(error);
+			next(error);
 		}
 	}
-	async refresh(req, res) {
+	async refresh(req, res, next) {
 		try {
-		} catch (error) {}
+		} catch (error) {
+			next(error);
+		}
 	}
-	async getUsers(req, res) {
+	async getUsers(req, res, next) {
 		try {
-			res.json(['1', '2']);
-		} catch (error) {}
+		} catch (error) {
+			next(error);
+		}
 	}
 }
 
