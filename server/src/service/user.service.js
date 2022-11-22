@@ -58,6 +58,11 @@ class UserService {
 		};
 	}
 
+	async logout(refreshToken) {
+		const token = await TokenService.removeToken(refreshToken);
+		return token;
+	}
+
 	async activate(activateLink) {
 		const user = await UserModel.findOne({ activateLink });
 		if (!user) {

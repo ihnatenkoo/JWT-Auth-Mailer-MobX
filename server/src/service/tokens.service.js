@@ -28,6 +28,11 @@ class TokenService {
 
 		return token;
 	}
+
+	async removeToken(refreshToken) {
+		const tokenData = await TokenModel.deleteOne({ refreshToken });
+		return tokenData;
+	}
 }
 
 module.exports = new TokenService();
