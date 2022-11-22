@@ -36,7 +36,7 @@ class UserController {
 				maxAge: ONE_MONTH,
 				httpOnly: true,
 			});
-			res.json(userData);
+			return res.json(userData);
 		} catch (error) {
 			next(error);
 		}
@@ -52,6 +52,7 @@ class UserController {
 			next(error);
 		}
 	}
+
 	async activate(req, res, next) {
 		try {
 			const activationLink = req.params.link;
@@ -61,12 +62,21 @@ class UserController {
 			next(error);
 		}
 	}
+
 	async refresh(req, res, next) {
 		try {
+			const { refreshToken } = req.cookies;
+			const userData = await UserService.refresh(refreshToken);
+			res.cookie('refreshToken', userData.refreshToken, {
+				maxAge: ONE_MONTH,
+				httpOnly: true,
+			});
+			return res.json(userData);
 		} catch (error) {
 			next(error);
 		}
 	}
+
 	async getUsers(req, res, next) {
 		try {
 		} catch (error) {
