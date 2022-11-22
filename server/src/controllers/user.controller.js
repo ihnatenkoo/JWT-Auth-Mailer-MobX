@@ -8,8 +8,9 @@ class UserController {
 		try {
 			const errors = validationResult(req);
 			if (!errors.isEmpty()) {
-				return next(ApiError.BadRequest('Validation error', errors.array()));
+				return next(ApiError.BadRequest('Validation error', errors));
 			}
+
 			const { email, password } = req.body;
 			const newUser = await UserService.register(email, password);
 			res.cookie('refreshToken', newUser.refreshToken, {
@@ -24,6 +25,11 @@ class UserController {
 
 	async login(req, res, next) {
 		try {
+			const errors = validationResult(req);
+			if (!errors.isEmpty()) {
+				return next(ApiError.BadRequest('Validation error', errors));
+			}
+
 			const { email, password } = req.body;
 			const userData = await UserService.login(email, password);
 			res.cookie('refreshToken', userData.refreshToken, {
