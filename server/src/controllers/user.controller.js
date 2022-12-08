@@ -16,6 +16,8 @@ class UserController {
 			res.cookie('refreshToken', newUser.refreshToken, {
 				maxAge: ONE_MONTH,
 				httpOnly: true,
+				sameSite: 'none',
+				secure: true,
 			});
 			return res.status(201).json(newUser);
 		} catch (error) {
@@ -35,6 +37,8 @@ class UserController {
 			res.cookie('refreshToken', userData.refreshToken, {
 				maxAge: ONE_MONTH,
 				httpOnly: true,
+				sameSite: 'none',
+				secure: true,
 			});
 			return res.json(userData);
 		} catch (error) {
@@ -70,6 +74,8 @@ class UserController {
 			res.cookie('refreshToken', userData.refreshToken, {
 				maxAge: ONE_MONTH,
 				httpOnly: true,
+				sameSite: 'none',
+				secure: true,
 			});
 			return res.json(userData);
 		} catch (error) {
