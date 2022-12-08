@@ -1,10 +1,11 @@
 import { FC } from 'react';
+import Form from './components/Form/Form';
 
 const App: FC = () => {
 	return (
-		<main>
-			<h1>Hello JWT</h1>
-		</main>
+		<>
+			<Form />
+		</>
 	);
 };
 

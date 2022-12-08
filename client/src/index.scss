@@ -1,4 +1,14 @@
 :root {
+	--blue: #0ea5e9;
+	--white: #fff;
+	--black: #2d2d2d;
+	--main-bg: #e1e5e9;
+	--gray-light: #f3f4f6;
+	--gray: #d1d5db;
+	--red: #ef4444;
+	--green: #16a34a;
+	--gold: #fbbf24;
+
 	font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
 	font-size: 16px;
 	line-height: 24px;
@@ -28,6 +38,10 @@ body {
 	margin: 0;
 	min-width: 320px;
 	min-height: 100vh;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 h1 {
@@ -56,7 +70,7 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
 	:root {
 		color: #213547;
-		background-color: #ffffff;
+		background-color: var(--main-bg);
 	}
 	a:hover {
 		color: #747bff;
