@@ -13,6 +13,10 @@ const App: FC = () => {
 		}
 	}, []);
 
+	if (store.isLoading) {
+		return <p>Loading...</p>;
+	}
+
 	if (store.isAuth) {
 		return (
 			<>
