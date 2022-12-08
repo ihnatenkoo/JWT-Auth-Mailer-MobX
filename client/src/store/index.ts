@@ -50,6 +50,7 @@ export default class Store {
 			this.setAuth(false);
 			this.setUser({} as IUser);
 		} catch (error: any) {
+			console.log(error);
 			console.log(error.response?.data?.message);
 		}
 	}

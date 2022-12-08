@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import { ChangeEvent, FC, FormEvent, useContext, useState } from 'react';
 import { Context } from '../../main';
 import FormBtn from '../FormBtn/FormBtn';
@@ -14,8 +15,6 @@ const LoginForm: FC = () => {
 	const onChangeValue = (e: ChangeEvent<HTMLInputElement>): void => {
 		setInputData({ ...inputData, [e.target.name]: e.target.value });
 	};
-
-	console.log(store);
 
 	const onLoginHandler = (): void => {
 		store.login(inputData.email, inputData.password);
@@ -56,4 +55,4 @@ const LoginForm: FC = () => {
 	);
 };
 
-export default LoginForm;
+export default observer(LoginForm);
